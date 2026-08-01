@@ -26,7 +26,7 @@ relative to the existing checkout (control).
 ## Project Checklist (7 Stages)
 - [x] 1. Experiment design ([docs/01_experiment_design.md](docs/01_experiment_design.md))
 - [x] 2. Synthetic data generation ([docs/02_data_generation.md](docs/02_data_generation.md))
-- [ ] 3. SQL metric analysis (DuckDB)
+- [x] 3. SQL metric analysis ([docs/03_sql_analysis.md](docs/03_sql_analysis.md))
 - [ ] 4. Python statistical testing (scipy)
 - [ ] 5. Visualization (matplotlib)
 - [ ] 6. Business recommendation write-up
