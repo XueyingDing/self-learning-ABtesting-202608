@@ -23,13 +23,14 @@ relative to the existing checkout (control).
 
 *(Metrics may be refined once data generation begins.)*
 
-## Project Checklist (6 Stages)
-- [ ] 1. Synthetic data generation
-- [ ] 2. SQL metric analysis (DuckDB)
-- [ ] 3. Python statistical testing (scipy)
-- [ ] 4. Visualization (matplotlib)
-- [ ] 5. Business recommendation write-up
-- [ ] 6. Final review & polish
+## Project Checklist (7 Stages)
+- [x] 1. Experiment design ([docs/01_experiment_design.md](docs/01_experiment_design.md))
+- [ ] 2. Synthetic data generation
+- [ ] 3. SQL metric analysis (DuckDB)
+- [ ] 4. Python statistical testing (scipy)
+- [ ] 5. Visualization (matplotlib)
+- [ ] 6. Business recommendation write-up
+- [ ] 7. Final review & polish
 
 ## Planned Folder Structure
 ```
