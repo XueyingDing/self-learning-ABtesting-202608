@@ -28,7 +28,7 @@ relative to the existing checkout (control).
 - [x] 2. Synthetic data generation ([docs/02_data_generation.md](docs/02_data_generation.md))
 - [x] 3. SQL metric analysis ([docs/03_sql_analysis.md](docs/03_sql_analysis.md))
 - [x] 4. Python statistical testing ([docs/04_statistical_testing.md](docs/04_statistical_testing.md))
-- [ ] 5. Visualization (matplotlib)
+- [x] 5. Visualization ([docs/05_visualization.md](docs/05_visualization.md))
 - [ ] 6. Business recommendation write-up
 - [ ] 7. Final review & polish
 
