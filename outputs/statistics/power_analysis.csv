@@ -1,0 +1,2 @@
+planned_control_rate,planned_treatment_rate,minimum_detectable_absolute_lift,alpha,target_power,required_n_per_group,required_n_total,actual_n_control,actual_n_treatment,actual_n_total,achieved_power_at_actual_n
+0.1,0.11,0.01,0.05,0.8,14750.790469044938,29501.580938089875,9938,10062,20000,0.6355122229072396

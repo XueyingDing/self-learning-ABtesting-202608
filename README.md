@@ -27,7 +27,7 @@ relative to the existing checkout (control).
 - [x] 1. Experiment design ([docs/01_experiment_design.md](docs/01_experiment_design.md))
 - [x] 2. Synthetic data generation ([docs/02_data_generation.md](docs/02_data_generation.md))
 - [x] 3. SQL metric analysis ([docs/03_sql_analysis.md](docs/03_sql_analysis.md))
-- [ ] 4. Python statistical testing (scipy)
+- [x] 4. Python statistical testing ([docs/04_statistical_testing.md](docs/04_statistical_testing.md))
 - [ ] 5. Visualization (matplotlib)
 - [ ] 6. Business recommendation write-up
 - [ ] 7. Final review & polish
