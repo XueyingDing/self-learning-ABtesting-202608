@@ -21,13 +21,16 @@ statistically significant regression after correcting for multiple testing.
 On paper, all three of the Stage 1 pre-specified launch gates pass.
 
 The most important caveat: this experiment was **underpowered** for its own
-planned effect size (63.55% achieved power vs. an 80% target), and the
-significant result reflects one specific random sample realizing a larger
-effect (+2.21pp) than the design was originally sized to detect (+1pp). That
-combination — technically passing gates, but on a less precise and
-single-sample basis, with purchaser-only guardrails — argues against an
-unconditional full launch and in favor of a controlled rollout with active
-monitoring.
+planned effect size — power at the actual sample size for the planned +1pp
+effect was 63.55%, against an 80% target — and the significant result
+reflects one specific random sample realizing a larger effect (+2.21pp)
+than the design was originally sized to detect (+1pp). In an underpowered
+design, a result that does reach significance also tends to overstate the
+true effect size ("winner's curse"), which is an additional reason not to
+expect +2.21pp to repeat exactly. That combination — technically passing
+gates, but on a less precise and single-sample basis, with purchaser-only
+guardrails — argues against an unconditional full launch and in favor of a
+controlled rollout with active monitoring.
 
 ## 2. Experiment Design
 
@@ -123,8 +126,20 @@ This does **not** mean the result is invalid — the observed effect (+2.21pp)
 was large enough to reach significance despite the smaller sample. Nor does
 it mean the original sample-size plan was validated; a true effect closer
 to the planned +1pp could easily have been missed entirely at this sample
-size, and the low achieved power limits how confidently this result should
-generalize.
+size, and the low power at the actual sample size limits how confidently
+this result should generalize.
+
+The +1pp figure above reflects the power analysis actually run in Stage 4
+against the treatment effect the synthetic data was calibrated to. Stage 1's
+original design document set a preliminary MDE assumption of ~2 percentage
+points purely to justify sample size in principle, before any data existed;
+that number was superseded once the simulated effect was deliberately
+reduced to +1pp for realism. Neither figure was ever defined as a minimum
+*business-relevant* effect — both were framed only as statistical planning
+inputs — so the 95% CI on the observed lift excluding zero is a statistical
+finding, not evidence that a +1.34pp to +3.08pp lift clears some financial
+threshold. No separate business-value or revenue-impact threshold has been
+formally defined for this project.
 
 ## 7. Recommendation and Rollout Plan
 

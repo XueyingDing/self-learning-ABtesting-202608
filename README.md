@@ -13,15 +13,15 @@ relative to the existing checkout (control).
 - H0: conversion_rate(treatment) = conversion_rate(control)
 - H1: conversion_rate(treatment) != conversion_rate(control)
 
-## Preliminary Primary Metric
+## Primary Metric
 - **Purchase conversion rate**: (# users who complete a purchase) / (# users who start checkout)
 
-## Preliminary Guardrail Metrics
+## Guardrail Metrics
 - **Average order value (AOV)** — treatment shouldn't reduce revenue per order
-- **Checkout latency / error rate** — treatment shouldn't degrade experience
+- **Checkout error rate** — treatment shouldn't degrade experience
 - **Refund/cancellation rate** — treatment shouldn't induce buyer's remorse
 
-*(Metrics may be refined once data generation begins.)*
+Full formulas and exact denominators: [docs/01_experiment_design.md](docs/01_experiment_design.md).
 
 ## Project Checklist (7 Stages)
 - [x] 1. Experiment design ([docs/01_experiment_design.md](docs/01_experiment_design.md))
@@ -30,17 +30,23 @@ relative to the existing checkout (control).
 - [x] 4. Python statistical testing ([docs/04_statistical_testing.md](docs/04_statistical_testing.md))
 - [x] 5. Visualization ([docs/05_visualization.md](docs/05_visualization.md))
 - [x] 6. Business recommendation write-up ([reports/06_executive_decision_memo.md](reports/06_executive_decision_memo.md))
-- [ ] 7. Final review & polish
+- [x] 7. Final review & polish
 
-## Planned Folder Structure
+## Project Structure
 ```
 .
 ├── CLAUDE.md
 ├── README.md
-├── data/           # synthetic datasets (generated, not hand-written)
-├── sql/            # metric queries
-├── notebooks_or_scripts/  # Python analysis (stats + viz)
-└── outputs/        # charts, summary tables
+├── requirements.txt
+├── data/                 # synthetic dataset (data/ab_test_data.csv)
+├── docs/                 # Stage 1-5 methodology write-ups
+├── sql/                  # DuckDB metric queries
+├── src/                  # Python scripts (data gen, SQL runner, stats, viz)
+├── outputs/
+│   ├── sql/              # metric CSVs from DuckDB
+│   ├── statistics/       # test_results.csv, power_analysis.csv
+│   └── figures/          # the four PNG charts
+└── reports/              # executive decision memo
 ```
 
 ## Project Summary
@@ -61,10 +67,12 @@ Full detail and reasoning: [reports/06_executive_decision_memo.md](reports/06_ex
   Holm correction.
 - **Recommendation: Phased rollout with continued monitoring** — not a full
   launch, and not "do not launch." All three Stage 1 launch gates
-  technically pass, but the experiment was underpowered for its own planned
-  effect size (63.55% achieved power vs. an 80% target), so the result
-  should be validated under real traffic with active guardrail monitoring
-  before a full commitment.
+  technically pass: the primary metric improved significantly, no guardrail
+  showed statistically significant deterioration after Holm correction, and
+  there was no evidence of sample ratio mismatch. But power at the actual
+  sample size for the planned +1pp effect was only 63.55% against an 80%
+  target, so the result should be validated under real traffic with active
+  guardrail monitoring before a full commitment.
 - **Caveats / next steps**: synthetic data, one realized random sample,
   underpowered design, purchaser-only guardrail metrics (refund rate, AOV)
   that condition on a post-treatment outcome, descriptive-only segment
@@ -88,3 +96,32 @@ python src/run_sql_analysis.py       # Stage 3: DuckDB metrics -> outputs/sql/*.
 python src/run_statistical_tests.py  # Stage 4: hypothesis tests -> outputs/statistics/*.csv
 python src/create_visualizations.py  # Stage 5: figures -> outputs/figures/*.png
 ```
+
+## Skills Demonstrated
+- Experiment design and metric definition (primary metric, guardrails,
+  randomization/analysis units, launch decision rule)
+- Synthetic data generation with a controlled, documented treatment effect
+- SQL analysis in DuckDB, including CTEs, `UNION ALL` segment rollups, and
+  window functions for cumulative metrics
+- Two-sample proportion tests, Welch's t-test, Holm-Bonferroni correction,
+  and a chi-square sample-ratio-mismatch test
+- Power and sample-size analysis, including diagnosing an underpowered
+  design after the fact
+- Analytical, business-readable visualization (matplotlib, no dual axes,
+  colorblind-safe fixed palette)
+- Executive decision communication translating statistical results into a
+  bounded business recommendation
+- A reproducible, AI-assisted analytics workflow with a documented,
+  stage-by-stage audit trail
+
+### Disclosure
+- The dataset is entirely **synthetic**, generated for this learning
+  project — no real customer or transaction data was used.
+- **AI (Claude Code) assisted with building this repository** — writing the
+  generation script, SQL, statistical tests, visualizations, and this
+  documentation, one stage at a time.
+- Analytical assumptions, code execution, and outputs were **reviewed at
+  each stage rather than accepted without validation** — scripts were run
+  and their actual console/file output (not assumed output) is what's
+  reported throughout the docs and this README.
+- This is a **learning and portfolio project, not production software**.
